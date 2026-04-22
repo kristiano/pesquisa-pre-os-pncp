@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Preços - PNCP</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header / Barra de Busca -->
+        <header class="search-header">
+            
+            <!-- Campo de API Key -->
+            <div class="api-key-box glass-panel">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="key-icon"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+                <input type="password" id="apiKeyInput" placeholder="Insira sua Chave de API (LLM) para liberar a pesquisa" autocomplete="off">
+            </div>
+
+            <!-- Campo de Pesquisa -->
+            <div class="search-box glass-panel disabled-box" id="searchBoxContainer">
+                <input type="text" id="searchInput" placeholder="Pesquisar por objeto (ex: Termômetro Digital)" autocomplete="off" disabled>
+                <button id="searchBtn" disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <div id="loader" class="loader hidden"></div>
+        </header>
+
+        <!-- Container de Resultados -->
+        <main id="resultsContainer" class="hidden">
+            <!-- Cards Estatísticos -->
+            <section class="stats-grid">
+                <div class="stat-card glass-panel gradient-border-1">
+                    <h3>Média</h3>
+                    <p id="valMedia">R$ 0,00</p>
+                </div>
+                <div class="stat-card glass-panel gradient-border-2">
+                    <h3>Mediana</h3>
+                    <p id="valMediana">R$ 0,00</p>
+                </div>
+                <div class="stat-card glass-panel gradient-border-3">
+                    <h3>Coeficiente de Variação (CV)</h3>
+                    <p id="valCV">0,0%</p>
+                </div>
+            </section>
+            
+            <div class="recommendation-panel glass-panel" id="recomendacaoPanel">
+                <span id="txtRecomendacao"></span>
+            </div>
+
+            <!-- Tabela de Dados -->
+            <section class="data-table-container glass-panel">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Objeto</th>
+                            <th>Valor (R$)</th>
+                            <th>Fonte (PNCP)</th>
+                            <th>Data</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Linhas geradas via JS -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

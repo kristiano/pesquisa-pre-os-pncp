@@ -11,7 +11,16 @@ class PesquisaRequest(BaseModel):
     llm_api_key: str
     quantidade_itens: int = 10
 
+# Rota para se o usuário abrir o link da API direto no navegador por engano
+@app.get("/")
+@app.get("/api")
+@app.get("/api/pesquisa")
+def aviso_navegador():
+    return {"status": "A API está online! Acesse a página principal para fazer a pesquisa."}
+
+# Aceita tanto com o /api quanto sem o /api (resolve o problema de rota da Vercel)
 @app.post("/api/pesquisa")
+@app.post("/pesquisa")
 def realizar_pesquisa(req: PesquisaRequest):
     """
     Realiza a busca no PNCP usando a Chave de API da LLM enviada pelo usuário via Frontend.

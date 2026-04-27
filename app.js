@@ -43,7 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         tableBody.innerHTML = '';
 
         try {
-            const response = await fetch('/api/pesquisa', {
+            // Usa o caminho completo da API na Vercel
+            const apiUrl = window.location.hostname === 'localhost' 
+                ? '/api/pesquisa' 
+                : '/api/pesquisa';
+                
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 

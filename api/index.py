@@ -2,7 +2,12 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import requests
 import datetime
-from .analise_precos import analisar_precos
+import os
+import sys
+
+# Adiciona o diretório atual ao path para permitir imports locais
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from analise_precos import analisar_precos
 
 app = FastAPI(title="API de Pesquisa de Preços (PNCP + LLM)")
 
